@@ -9,10 +9,10 @@ import com.example.composition.R
 import com.example.composition.databinding.ChooseLevelFragmentBinding
 
 
-class ChooseLevelFragment:Fragment() {
+class ChooseLevelFragment : Fragment() {
 
     private var _binding: ChooseLevelFragmentBinding? = null
-    private val binding:  ChooseLevelFragmentBinding
+    private val binding: ChooseLevelFragmentBinding
         get() = _binding ?: throw  RuntimeException(" ChooseLevelFragmentBinding = null")
 
 
@@ -21,7 +21,7 @@ class ChooseLevelFragment:Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding =  ChooseLevelFragmentBinding.inflate(inflater, container, false)
+        _binding = ChooseLevelFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -36,5 +36,11 @@ class ChooseLevelFragment:Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        fun newInstance(): ChooseLevelFragment {
+            return ChooseLevelFragment()
+        }
     }
 }
