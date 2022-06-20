@@ -18,6 +18,7 @@ class GameViewModel : ViewModel() {
 
     private val generateQuestionUseCase = GenerateQuestionUseCase(repository)
     private val getGameSettingsUseCase = GetGameSettingsUseCase(repository)
+    private var timer:CountDownTimer? = null
 
     private val _formattedTime = MutableLiveData<String>()
     val formattedTime: LiveData<String>
@@ -35,7 +36,7 @@ class GameViewModel : ViewModel() {
     }
 
     private fun startTimer() {
-        val timer = object : CountDownTimer(
+      timer = object : CountDownTimer(
             gameSettings.gameTimeSeconds * MILLIS_IN_SECONDS,
             MILLIS_IN_SECONDS
         ) {
@@ -47,6 +48,7 @@ class GameViewModel : ViewModel() {
                 finishGame()
             }
         }
+        timer?.start()
     }
 
     fun formatTime(p0: Long): String {
@@ -58,6 +60,11 @@ class GameViewModel : ViewModel() {
     }
 
     private fun finishGame() {
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        timer?.cancel()
     }
 
     companion object {
