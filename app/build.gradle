@@ -3,6 +3,7 @@ import org.gradle.api.internal.FeaturePreviews
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
 }
 
 android {
